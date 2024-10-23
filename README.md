@@ -1,4 +1,4 @@
-# Dev Senior Code - Python course - Module 1
+# Dev Senior Code - Python 🐍 course - Module 1
 
 Welcome to the course "Python from Zero to Senior: The Master Code Path." This course is designed to take students from the most basic fundamentals of Python programming to an expert level in software development. 
 
@@ -6,7 +6,7 @@ It offers a comprehensive focus on backend development using Django and Flask, a
 
 **The purpose of this repository is to keep the track of the classes for the python course Module 1.**
 
-### Fundamentos de Programación en Python
+### Fundamentos de Programación en Python 🐍
 
 - **Clase 1**: Introducción a python y configuracion del entorno de desarrollo
     - Instalación de Python, IDEs ( PyCharm, VSCode) y configuración de Git / GitHub.
