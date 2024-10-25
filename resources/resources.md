@@ -8,6 +8,10 @@
 - [VsCode](./installations/vs_code/vscode_installation_guide.md)
 - [VsCode Extensions](./installations/vs_code/vscode_python_extensions.md)
 
+### Books
+- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/)
+
 ### Classes (Content files)
 
 - [Class 1](./classes/class1/)
+- [Class 2](./classes/class2/)
