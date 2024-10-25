@@ -66,28 +66,11 @@ print(mensaje)  # Salida: Hola, Ana. Tienes 25 años.
 - Puedes especificar el orden de las variables usando índices: `"Hola, {0}. Tienes {1} años.".format(nombre, edad)`.
 - También puedes usar nombres de variables para mayor claridad: `"Hola, {nombre}. Tienes {edad} años.".format(nombre=nombre, edad=edad)`.
 
-## 4. **Interpolación con el Método `Template`** 📋
-
-El módulo `string` en Python también proporciona una forma de interpolar strings usando plantillas (`Template`). Este enfoque es útil cuando se desea tener una plantilla estática y luego reemplazar los valores.
-
-### **Ejemplo**:
-```python
-from string import Template
-
-plantilla = Template("Hola, $nombre. Tienes $edad años.")
-mensaje = plantilla.substitute(nombre="María", edad=28)
-print(mensaje)  # Salida: Hola, María. Tienes 28 años.
-```
-
-### **Notas**:
-- Se usa el símbolo `$` seguido del nombre de la variable.
-- Es más seguro que las f-strings en algunos casos, como cuando se trabaja con entradas de usuarios.
 
 ## 🎯 **¿Cuál Deberías Usar?**
 - **F-strings**: Son la opción preferida por ser rápidas, legibles y flexibles. Úsalas siempre que puedas.
 - **Método `str.format()`**: Útil si necesitas compatibilidad con versiones antiguas de Python.
 - **Operador `%`**: Aunque sigue funcionando, se considera una forma obsoleta en Python moderno.
-- **`Template`**: Úsalo cuando trabajes con datos que podrían provenir de fuentes externas para evitar problemas de seguridad.
 
 ## 🎉 ¡A Practicar!
 
