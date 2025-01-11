@@ -1,3 +1,4 @@
+# Primer ejercicio de composición
 class Vehiculo:
     def __init__(self, motor):
         self.motor = motor
@@ -23,7 +24,7 @@ class MotorGasolina(Motor):
 class MotorElectrico(Motor):
     def __init__(self):
         pass
-
+ 
     def iniciar(self):
         print(f"Motor eléctrico encendido")
 
