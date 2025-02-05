@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./misclases/Modulo3/clase5/proyecto/src"
+    ]
+}
