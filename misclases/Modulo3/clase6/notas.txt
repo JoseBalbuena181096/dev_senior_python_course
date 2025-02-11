@@ -1,0 +1,2 @@
+# Refactorización de codigo:
+-- Es actualizar el código prexistente atravez de simplificarlo.
