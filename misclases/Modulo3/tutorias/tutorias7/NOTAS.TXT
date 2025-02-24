@@ -1,0 +1,36 @@
+Que es un framework?
+
+                                -> Rapido
+Marco de trabajo = Plantillas   -> Eficiente
+
+
+Ejemplos: -> Django  (Big, Robusto)  
+          -> Flask   (Minimalista framework)
+
+
+
+Reac -> seria un framework o realmente es una libreria 
+
+Diferencia entre libreria y framework es la estructura y el control:
+
+Framework
+Es una estructura completa que define un flujo de trabajo y una arquitectura específica.
+Obliga a seguir ciertas reglas y patrones de diseño.
+El framework llama al código del desarrollador y controla el flujo de la aplicación.
+Ejemplos: Angular, Django, Spring, .NET, Ruby on Rails.
+
+Librería
+Es un conjunto de funciones reutilizables que el desarrollador usa cuando lo necesita.
+No impone una estructura de trabajo, sino que proporciona herramientas específicas.
+El desarrollador tiene el control y llama a la librería según lo requiera.
+Ejemplos: Lodash, NumPy, Pandas, React (aunque a veces se le considera un framework ligero).
+
+
+MVC Modelo Vista Controlador
+
+Modelo 
+
+Vista -> Tkinter
+                       -> Precargada 
+Controlador  ->  Data  -> SQlite 
+
