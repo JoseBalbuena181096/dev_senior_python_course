@@ -571,3 +571,131 @@ netstat -ano | findstr :3307
 - Verificar permisos
 
 **Nota**: Los pasos pueden variar según versión de MySQL
+
+
+### Un servidor:
+
+- Un servidor es un sistema informático o un programa que proporciona servicios, recursos o funcionalidades a otros dispositivos (llamados clientes) a través de una red. Puedes imaginarlo como un gran ordenador especializado que:
+
+-   1. Almacena Información.
+-   2. Procesa solicitudes.
+-   3. Comparte recursos como páginas web, archivos, correos electrónicos, etc.
+-   4. Está siempre encendido y disponible para responder a las peticiones de otros dispositivos.
+
+### Un puerto:
+Un puerto es como una "puerta virtual" o un punto de esntrada/salida en un servidor que permite la comunicación entre diferentes servicios de red. Caracteristicas importantes:
+
+-   1. Es un número que identifica un servicio o proceso específico en un servidor.
+-   2. Permite que diferentes tipos de comunicaciones ocurran de forma simultanea.
+-   3. Cada servicio tiene un número de puerto único.
+-   4. Ayuda a dirigir el tráfico de red al servicio correcto.
+
+### Ejemplo de puertos comunes:
+-   Puerto 80: Para tráfico web HTTP.
+-   Puerto 443: Para tráfico web seguro HTTPS
+-   Puerto 22:  Para conexiones SSH.
+-   Puerto 21:  Para transferencia de archivos FTP.
+
+En resumen, un servidor es un sistema que proporciona servicios y un puerto es la "entrada" especifica para un tipo de servicio o comunicación.
+
+### Tablas en Plural:
+Las tablas se nombran en plural porque representan una colección o conjunto de entidades del mismo tipo. Por ejemplo:
+
+"usuarios" (en lugar de "usuario") representa múltiples registros de usuarios
+"productos" contiene varios registros de producto
+"empleados" almacena información de múltiples empleados
+
+### Columnas en Singular:
+Las columnas se nombran en singular porque representan un atributo específico para cada registro individual. Por ejemplo:
+
+En la tabla "usuarios", tendrías columnas como:
+
+"nombre" (no "nombres")
+"email" (no "emails")
+"edad" (no "edades")
+
+### Ejemplo práctico:
+
+```
+CREATE TABLE usuarios (
+    id_usuario INTEGER,
+    nombre TEXT,
+    email TEXT,
+    edad INTEGER
+);
+```
+Beneficios de esta convención:
+
+Mejora la legibilidad del código
+Refleja con precisión la naturaleza de los datos
+Sigue una lógica gramatical clara
+Facilita la comprensión de la estructura de la base de datos
+
+Esta práctica es una convención ampliamente aceptada en el diseño de bases de datos relacionales, aunque no es una regla estricta del lenguaje SQL.
+
+### Aquí te presento los tipos de datos más importantes en MySQL, organizados por categoría:
+
+Tipos de Datos Numéricos
+
+
+INT (Integer): Para números enteros, ocupa 4 bytes y puede almacenar valores desde -2,147,483,648 hasta 2,147,483,647
+SMALLINT: Entero más pequeño, ocupa 2 bytes
+BIGINT: Entero más grande, ocupa 8 bytes
+FLOAT: Números de punto flotante de precisión simple
+DOUBLE: Números de punto flotante de doble precisión
+DECIMAL: Números decimales de precisión exacta, ideal para cálculos financieros
+
+
+Tipos de Datos de Texto
+
+
+VARCHAR: Cadena de texto de longitud variable
+CHAR: Cadena de texto de longitud fija
+TEXT: Para textos largos
+ENUM: Lista predefinida de valores posibles
+SET: Colección de valores únicos
+
+
+Tipos de Datos de Fecha y Hora
+
+DATE: Almacena fecha (YYYY-MM-DD)
+DATETIME: Almacena fecha y hora
+TIMESTAMP: Fecha y hora con zonas horarias
+TIME: Solo hora
+YEAR: Año con 4 dígitos
+
+
+Tipos de Datos Booleanos
+
+
+BOOLEAN (BOOL): Verdadero o falso, en realidad se almacena como TINYINT(1)
+
+
+Tipos de Datos Binarios
+
+
+BLOB: Para almacenar archivos binarios
+BINARY: Para datos binarios de longitud fija
+
+Cada tipo de dato tiene sus propias características de almacenamiento, precisión y rendimiento, por lo que es importante elegir el más adecuado según tus necesidades específicas.
+
+
+## Modificar el campo de una tabla 
+
+```
+ALTER TABLE Profesores
+CHANGE especilidad especialidad VARCHAR(100);
+```
+
+## Modificar el tipo de dato 
+```
+ALTER TABLE usuarios 
+CHANGE edad edad_usuario INT;
+``` 
+
+## Modificar si usar tipo de dato
+```
+ALTER TABLE nombre_tabla 
+MODIFY COLUMN nombre_antiguo nombre_nuevo;
+```
+

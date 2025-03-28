@@ -147,3 +147,123 @@ SET SQL_SAFE_UPDATES = 0;
 DELETE FROM Profesores WHERE nombre = 'Sofía López';
 SET SQL_SAFE_UPDATES = 1;
 ```
+
+
+## Crear una tabla de cursos que se relacione con la de profesores
+```
+CREATE TABLE Cursos(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100),
+    id_profesor INT,
+    FOREIGN KEY (id_profesor) REFERENCES profesores(id)
+);
+
+```
+
+Esto crea una relación uno a muchos de profesores a cursos porque:
+
+Estructura de la clave foránea
+
+
+id_profesor INT permite múltiples registros con el mismo valor de profesor
+FOREIGN KEY (id_profesor) REFERENCES profesores(id) vincula cada curso a un profesor específico
+
+
+Interpretación práctica
+
+
+Un profesor puede tener múltiples cursos
+Cada curso solo puede tener un profesor asignado
+La base de datos permite que un mismo ID de profesor se repita en varios registros de cursos
+
+Ejemplo para ilustrar:
+## Tabla Profesores
+
+```
+INSERT INTO profesores (id, nombre) VALUES 
+(1, 'Juan Pérez'),
+(2, 'María García');
+```
+
+### Tabla Cursos
+INSERT INTO Cursos (nombre, id_profesor) VALUES
+('Matemáticas', 1),  -- Curso de Juan Pérez
+('Física', 1),       -- Otro curso de Juan Pérez
+('Biología', 2);     -- Curso de María García
+En este ejemplo, Juan Pérez (id 1) tiene dos cursos, mientras que María García (id 2) tiene un curso, demostrando la relación uno a muchos.
+Características clave:
+
+Un profesor puede tener N cursos
+Cada curso tiene solo 1 profesor
+La clave foránea permite esta cardinalidad
+
+
+## Crear una relación de estudiantes a cursos
+
+```
+ALTER TABLE Estudiantes 
+ADD COLUMN id_curso INT,
+ADD FOREIGN KEY (id_curso) REFERENCES Cursos(id);
+```
+
+Se establece una relación uno a muchos de Cursos a Estudiantes:
+
+Un curso puede tener múltiples estudiantes
+Cada estudiante pertenece a un único curso
+
+Características de la relación:
+
+Un registro en la tabla Cursos puede estar relacionado con varios registros en la tabla Estudiantes
+Cada estudiante solo puede estar asociado a un curso a la vez
+
+
+#### Insertar cursos
+```
+INSERT INTO Cursos (id, nombre, id_profesor) VALUES 
+(1, 'Python', 2),
+(2, 'C++', 1),
+(3, 'Java', 3);
+```
+
+### No se puede eliminar una tabla si esta esta referenciada en otra tabla, se tiene que eliminar la referencia primero o eliminar primero la tabla que tiene la referencia de otra.
+
+
+
+### Eliminar los elementos de la tabla estudiantes y reiniciar el contador 
+
+```
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM Estudiantes;
+SET SQL_SAFE_UPDATES = 1;
+
+TRUNCATE TABLE Estudiantes;
+
+```
+
+### Eliminar la columna curso de Estudiantes
+
+```
+ALTER TABLE Estudiantes
+DROP COLUMN curso;
+```
+
+
+### Insertar estudiantes con relaciones
+
+```
+INSERT INTO Estudiantes(nombre, edad, id_curso) VALUES
+('Jose Balbuena', 28, 3),
+('Jesus Balbuena', 26, 2),
+('Maria Palma', 32, 1),
+('Monse Palma', 33, 1);
+```
+
+### Unir la tabla cursos y estudiantes 
+
+```
+SELECT Estudiantes.nombre, Cursos.nombre AS Curso
+FROM Estudiantes
+JOIN Cursos ON Estudiantes.id_curso = Cursos.id;
+```
+
+
