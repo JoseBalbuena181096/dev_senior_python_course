@@ -267,3 +267,4 @@ JOIN Cursos ON Estudiantes.id_curso = Cursos.id;
 ```
 
 
+
