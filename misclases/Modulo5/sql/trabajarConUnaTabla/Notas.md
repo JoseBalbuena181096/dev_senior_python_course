@@ -372,3 +372,291 @@ Seleccionar todos los empleados que su nombre termine en A
 SELECT * 
 FROM empleados WHERE nombre LIKE "%A";
 ```
+
+### Expresiones regulares
+Comúnmente llamadas **regex** son patrones de símbolos y caracteres utilizados para hacer match con una búsqueda.
+
+Consulta para traer todos los apellidos que termian en ez.
+```
+SELECT *
+FROM Empleados WHERE apellido LIKE "%ez";
+```
+#### REGEXP
+Trae como retorno los registros que coincidan con el patrón realizado con expreciones regulares.
+
+
+La siguiente expreción trae cualquier apellido que tenga un ez en donde sea:
+```
+SELECT *
+FROM Empleados WHERE apellido REGEXP "ez";
+```
+
+El operador ^:
+Busca la coincidencia con el principio del string.
+
+
+La siguiente consulta trae cualquier apellido que comience con a
+```
+SELECT *
+FROM Empleados WHERE apellido REGEXP "^a";
+```
+
+El operador $:
+Busca las coincidencias con el final del string.
+
+
+Traer todos los empleados con el apellido que termine en s:
+```
+SELECT *
+FROM Empleados WHERE apellido REGEXP "s$";
+```
+
+Operador |:
+Busca las coincidencias con cualquier carácter, cadena de caracteres o subexpreciones de manera separada.
+
+
+Traer todos los empleados con el apellido que contengan ez o iz
+```
+SELECT *
+FROM Empleados WHERE apellido REGEXP "ez|iz";
+```
+
+Combinar indicadores,  traer todos los empleados que contengan ez, iz y que empiece con b
+
+```
+SELECT *
+FROM Empleados WHERE apellido REGEXP "ez|iz|^b";
+```
+### ORDER BY:
+Utilizada para ordenar registros.
+
+Por default la trae de menor a menor y por orden alfabetico(a-z).
+
+
+Trae los nombres por orden alfabetico.
+```
+SELECT *
+FROM empleados ORDER BY nombre;
+```
+
+Para invertir el orden de los nombres ejecutamos el orden decendente
+```
+SELECT *
+FROM empleados ORDER BY nombre DESC;
+```
+
+Mezlcando filtros y ordenamiento.
+Va en el sigueinte orden:
+1. WHERE
+2. ORDER BY
+
+Traer empleados con apellido que tenga caracteres luego ez y en orden decendente
+
+```
+SELECT *
+FROM Empleados WHERE apellido LIKE "%ez" 
+ORDER BY apellido DESC;
+```
+
+Traer telefono, edad de empleados con apellido que lleve caracteres y luego ez, ordenado de forma decendente pero por nombbre 
+```
+SELECT telefono, edad
+FROM Empleados WHERE apellido LIKE "%ez" 
+ORDER BY nombre DESC;
+```
+
+### IS NULL
+Comando utilizado para probar valores vacíos, (NULL no es cero es ausencia de valor)
+
+Filtrar todos los datos donde domicilio es nulo:
+```
+SELECT *
+FROM empleados WHERE domicilio IS NULL;
+```
+
+Filtrar todos los datos donde el domicilio es no nulo:
+```
+SELECT *
+FROM empleados WHERE domicilio IS NOT NULL;
+```
+
+### LIMIT
+Utilizada para especificar el número de registros que obtendremos como retorno al ejecutar la consulta.
+
+La siguiente intrucción nos va traer los primero 5 registros.
+```
+SELECT *
+FROM ventas LIMIT 5;
+```
+ 
+La siguiente instruccion se salta los primeros 5 datos y luego me muestra nueve
+```
+SELECT *
+FROM ventas LIMIT 5, 9;
+```
+
+### Crear la base de datos de practica
+```
+CREATE DATABASE IF NOT EXISTS db_practica1;
+```
+
+Seleccionar la base de datos:
+```
+USE db_practica1;
+```
+
+Para insertar los datos de csv de ventas.csv o pagos.csv se ejecutan los codigos insertar.py, insertarPagos.py, insertarClientes.py, insertarDias.py, incertarProductos.py, insertarVendedore,py y insertarZonas.py
+
+Mostrar las insercción de los datos ejemplo:
+´´´
+SELECT * FROM ventas; 
+SELECT * FROM pagos;
+SELECT * FROM clientes;
+SELECT * FROM vendedores;
+SELECT * FROM productos;
+SELECT * FROM dias;
+SELECT * FROM productos;
+´´´
+### Trabajar con una tabla:
+
+#### Ejercicios declaración SELECT:
+1.  Selecciona tu SCHEMA db_practicas con USE:
+```
+USE db_practica1;
+```
+2.  Aplica un SELECT y obtén todas las conlumnas con * de ventas:
+```
+SELECT * FROM ventas;
+```
+3.  Usa SELECT para traer las columnas de ID_zona, venta, ID_cliente
+```
+SELECT ID_zona, venta, ID_cliente FROM ventas;
+``` 
+4.  Con SELECT trae ahora solo la venta y dale otro nombre con AS a la columna:
+```
+SELECT venta AS ventaPractica FROM ventas;
+```
+
+5. Obtenér  una columna que te muestre la venta + IVA (16%) y nómbrala diferente
+```
+SELECT venta*.16 AS IVA_VENTA FROM ventas;
+```
+
+#### Ejercicios cláusula WHERE
+1.  Traer todos los datos de la zona 2:
+```
+SELECT * FROM ventas WHERE ID_ZONA = 2;
+```
+
+2. Todas las ventas mayores a 2000:
+```
+SELECT * FROM ventas WHERE venta > 2000;
+```
+3.  Todos los productos que sean del cliente 7:
+```
+SELECT * FROM ventas WHERE ID_cliente = 7;
+```
+4.  Trae toda la venta que sean menores a 1000000:
+```
+SELECT * FROM ventas WHERE venta < 1000000;
+```
+#### Operadores AND, OR, NOT
+1. Traer todas las ventas mayores o iguales a 1500000 en zona 2:
+```
+SELECT * FROM ventas WHERE venta >= 1500000 AND  ID_Zona = 2; 
+```
+
+2.  Todas las ventas menores a 500000 en la zona 2 que sean del vendedor 2
+```
+SELECT * FROM ventas WHERE venta < 500000 AND ID_zona = 2 AND ID_Vendedor = 2;
+```
+
+3. Todas las ventas mayores a 999999 o que sean del vendedor 13:
+```
+SELECT * FROM ventas WHERE venta > 999999 OR ID_Vendedor = 13;
+```
+
+4. Traer toda la venta que NO sea del cliente 10:
+```
+SELECT * FROM ventas WHERE NOT ID_cliente = 10;
+```
+### Operador IN
+1.  Obtén las ventas de la zona 1 al 4:
+```
+SELECT * FROM ventas WHERE ID_Zona IN (1, 4);
+```
+2. Obtén las ventas que haya realizado el consumidor 6,7,8 y 9:
+```
+SELECT * FROM ventas WHERE ID_cliente IN (6, 7, 8, 9);
+```
+
+3. Obtén las ventas que NO sean del vendedor 15, 21, 35:
+```
+SELECT * FROM ventas WHERE ID_Vendedor NOT IN (15, 21, 35);
+```
+
+### REGEXP (regular expression)
+Revizar la tabla vendedores:
+```
+SELECT * FROM vendedores;
+```
+
+1. Obtén los apellidos del personal de ventas que termine en 'ez'
+```
+SELECT apellido FROM vendedores WHERE apellido REGEXP 'ez$';  
+```
+
+2. Agregar la columna de nombre para tener las 2 columnas, nombre y apellido:
+```
+SELECT CONCAT(nombre, ' ', apellido) AS FULL_NAME FROM vendedores;
+```
+3. Crea una consulta para tener los apellidos que terminen en 'ez' o inicie en 'sa':
+```
+SELECT CONCAT(nombre, ' ', apellido) AS FULL_NAME FROM vendedores WHERE apellido REGEXP 'ez$|^sa';
+```
+
+```
+SELECT CONCAT(nombre, ' ', apellido) AS FULL_NAME FROM vendedores WHERE apellido REGEXP 'ez$' OR apellido REGEXP '^sa';
+```
+### ISNULL
+1. Tenemos un cliente que no tiene teléfono, necesitamos identificarlo para poder actualizar la base de datos, qué cliente es?
+
+Mostrar los clientes:
+```
+SELECT * FROM clientes;
+```
+
+Obtener cliente con telefono nulo:
+```
+SELECT * FROM clientes WHERE Telefono IS NULL;  
+```
+
+### Order BY
+1.  Ordenar la información de los vendedores por nombre en forma decendiente:
+```
+SELECT * FROM vendedores ORDER BY nombre DESC;
+```
+2.  Ordena ahora los datos de los vendedores por nombre y después por apellido
+```
+SELECT * FROM  vendedores FROM ORDER BY nombre;
+```
+```
+SELECT * FROM  vendedores ORDER BY nombre;
+SELECT * FROM  vendedores ORDER BY apellido;
+```
+
+y a vez por nombre y luego apellido
+```
+SELECT * FROM  vendedores ORDER BY nombre, apellido;
+```
+
+### LIMIT
+Limita las ventas a los primeros 10 registros:
+```
+SELECT * FROM ventas LIMIT 10;
+```
+
+Limita las ventas de los registros entre el 50 y el 100:
+```
+SELECT * FROM ventas LIMIT 50, 100;
+```
