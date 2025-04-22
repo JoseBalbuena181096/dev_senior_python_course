@@ -1,21 +1,21 @@
 import customtkinter as ctk
-from controllers.estudiante_controller import EstudianteController
+from controllers.horario_controller import HorarioController
 
-class ListarEstudiantes:
-    def __init__(self, ventana_estudiante):
-        self.ventana_principal = ventana_estudiante["ventana"]
-        self.tema = ventana_estudiante["tema"]
-        self.db = ventana_estudiante["db"]
-        self.estudiante_controller = EstudianteController(self.db)
-        self.estudiante_seleccionado = None
+class ListarHorarios:
+    def __init__(self, ventana_horario):
+        self.ventana_principal = ventana_horario["ventana"]
+        self.tema = ventana_horario["tema"]
+        self.db = ventana_horario["db"]
+        self.horario_controller = HorarioController(self.db)
+        self.horario_seleccionado = None
         
         self.ventana = ctk.CTk()
-        self.ventana.title("Lista de Estudiantes")
+        self.ventana.title("Lista de Horarios")
         
         # Configurar el tamaño de la ventana
         ancho_pantalla = self.ventana.winfo_screenwidth()
         alto_pantalla = self.ventana.winfo_screenheight()
-        ancho_ventana = int(ancho_pantalla * 0.6)
+        ancho_ventana = int(ancho_pantalla * 0.7)
         alto_ventana = int(alto_pantalla * 0.6)
         
         # Centrar la ventana
@@ -29,7 +29,7 @@ class ListarEstudiantes:
         self.ventana.protocol("WM_DELETE_WINDOW", self.cerrar_ventana)
         
         # Crear el título
-        self.titulo = ctk.CTkLabel(self.ventana, text="Lista de Estudiantes", font=("Arial", 16))
+        self.titulo = ctk.CTkLabel(self.ventana, text="Lista de Horarios", font=("Arial", 16))
         self.titulo.pack(pady=10)
         
         # Crear el frame principal para la tabla
@@ -72,11 +72,11 @@ class ListarEstudiantes:
         self.boton_cambiar_tema.pack(pady=10)
     
     def crear_tabla(self):
-        # Obtener los estudiantes
-        estudiantes = self.estudiante_controller.listar_estudiantes()
+        # Obtener los horarios
+        horarios = self.horario_controller.listar_horarios()
         
         # Crear encabezados
-        encabezados = ["ID", "Nombre", "Apellido", "Correo", "Teléfono", "Seleccionar"]
+        encabezados = ["ID", "Curso", "Día", "Hora Inicio", "Hora Fin", "Seleccionar"]
         for i, encabezado in enumerate(encabezados):
             label = ctk.CTkLabel(
                 self.frame_tabla,
@@ -86,40 +86,40 @@ class ListarEstudiantes:
             )
             label.grid(row=0, column=i, padx=5, pady=5)
         
-        # Mostrar los estudiantes
-        for i, estudiante in enumerate(estudiantes, start=1):
+        # Mostrar los horarios
+        for i, horario in enumerate(horarios, start=1):
             # ID
             ctk.CTkLabel(
                 self.frame_tabla,
-                text=str(estudiante.id_estudiante),
+                text=str(horario.id_horario),
                 width=150
             ).grid(row=i, column=0, padx=5, pady=5)
             
-            # Nombre
+            # Curso
             ctk.CTkLabel(
                 self.frame_tabla,
-                text=estudiante.nombre,
+                text=horario.nombre_curso,
                 width=150
             ).grid(row=i, column=1, padx=5, pady=5)
             
-            # Apellido
+            # Día
             ctk.CTkLabel(
                 self.frame_tabla,
-                text=estudiante.apellido,
+                text=horario.dia_semana,
                 width=150
             ).grid(row=i, column=2, padx=5, pady=5)
             
-            # Correo
+            # Hora Inicio
             ctk.CTkLabel(
                 self.frame_tabla,
-                text=estudiante.correo,
+                text=horario.hora_inicio,
                 width=150
             ).grid(row=i, column=3, padx=5, pady=5)
             
-            # Teléfono
+            # Hora Fin
             ctk.CTkLabel(
                 self.frame_tabla,
-                text=estudiante.telefono,
+                text=horario.hora_fin,
                 width=150
             ).grid(row=i, column=4, padx=5, pady=5)
             
@@ -127,12 +127,12 @@ class ListarEstudiantes:
             ctk.CTkButton(
                 self.frame_tabla,
                 text="Seleccionar",
-                command=lambda id=estudiante.id_estudiante: self.seleccionar_estudiante(id),
+                command=lambda id=horario.id_horario: self.seleccionar_horario(id),
                 width=150
             ).grid(row=i, column=5, padx=5, pady=5)
     
-    def seleccionar_estudiante(self, id_estudiante):
-        self.estudiante_seleccionado = id_estudiante
+    def seleccionar_horario(self, id_horario):
+        self.horario_seleccionado = id_horario
         self.cerrar_ventana()
     
     def cambiar_tema(self):
@@ -143,4 +143,4 @@ class ListarEstudiantes:
     
     def cerrar_ventana(self):
         self.ventana.destroy()
-        # No mostrar la ventana principal aquí, se mostrará en el método actualizar_estudiante
+        self.ventana_principal.deiconify() 

@@ -56,6 +56,7 @@ CREATE TABLE Horarios (
     FOREIGN KEY (curso_id) REFERENCES Cursos(id_curso)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 -- Insertar datos en la base de datos
 INSERT INTO Estudiantes (nombre, apellido, correo_electronico, telefono)
 VALUES ('Juan', 'Perez', 'jperez@dominio.com', '1234567'),

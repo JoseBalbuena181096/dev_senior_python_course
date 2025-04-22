@@ -1,16 +1,16 @@
 import customtkinter as ctk
-from controllers.estudiante_controller import EstudianteController
-from view.Tkinter.ViewEstudiante.listarEstudiantes import ListarEstudiantes
+from controllers.docenteController import DocenteController
+from view.Tkinter.ViewDocente.listarDocentes import ListarDocentes
 
-class RegistrarEstudiante:
-    def __init__(self, ventana_estudiante):
-        self.ventana_principal = ventana_estudiante["ventana"]
-        self.tema = ventana_estudiante["tema"]
-        self.db = ventana_estudiante["db"]
-        self.estudiante_controller = EstudianteController(self.db)
+class RegistrarDocente:
+    def __init__(self, ventana_docente):
+        self.ventana_principal = ventana_docente["ventana"]
+        self.tema = ventana_docente["tema"]
+        self.db = ventana_docente["db"]
+        self.docente_controller = DocenteController(self.db)
         
         self.ventana = ctk.CTk()
-        self.ventana.title("Registrar Estudiante")
+        self.ventana.title("Registrar Profesor")
         
         # Configurar el tamaño de la ventana
         ancho_pantalla = self.ventana.winfo_screenwidth()
@@ -29,7 +29,7 @@ class RegistrarEstudiante:
         self.ventana.protocol("WM_DELETE_WINDOW", self.cerrar_ventana)
         
         # Crear el título
-        self.titulo = ctk.CTkLabel(self.ventana, text="Registrar Nuevo Estudiante", font=("Arial", 16))
+        self.titulo = ctk.CTkLabel(self.ventana, text="Registrar Nuevo Profesor", font=("Arial", 16))
         self.titulo.pack(pady=10)
         
         # Crear el frame para los campos
@@ -78,7 +78,8 @@ class RegistrarEstudiante:
             ("Nombre", "nombre"),
             ("Apellido", "apellido"),
             ("Correo", "correo"),
-            ("Teléfono", "telefono")
+            ("Teléfono", "telefono"),
+            ("Especialidad", "especialidad")
         ]
         
         self.entradas = {}
@@ -106,9 +107,10 @@ class RegistrarEstudiante:
             apellido = self.entradas["apellido"].get()
             correo = self.entradas["correo"].get()
             telefono = self.entradas["telefono"].get()
+            especialidad = self.entradas["especialidad"].get()
             
             # Validar que todos los campos estén llenos
-            if not all([nombre, apellido, correo, telefono]):
+            if not all([nombre, apellido, correo, telefono, especialidad]):
                 raise ValueError("Todos los campos son obligatorios")
             
             # Crear ventana de confirmación
@@ -124,7 +126,7 @@ class RegistrarEstudiante:
             # Mensaje de confirmación
             mensaje = ctk.CTkLabel(
                 ventana_confirmacion,
-                text="¿Está seguro que desea registrar este estudiante?",
+                text="¿Está seguro que desea registrar este profesor?",
                 font=("Arial", 12)
             )
             mensaje.pack(pady=20)
@@ -137,7 +139,7 @@ class RegistrarEstudiante:
             ctk.CTkButton(
                 frame_botones,
                 text="Sí",
-                command=lambda: self.registrar_estudiante(nombre, apellido, correo, telefono, ventana_confirmacion),
+                command=lambda: self.registrar_docente(nombre, apellido, correo, telefono, especialidad, ventana_confirmacion),
                 fg_color="green"
             ).pack(side="left", padx=10)
             
@@ -156,10 +158,10 @@ class RegistrarEstudiante:
                 text_color="red"
             ).pack(pady=5)
     
-    def registrar_estudiante(self, nombre, apellido, correo, telefono, ventana_confirmacion):
+    def registrar_docente(self, nombre, apellido, correo, telefono, especialidad, ventana_confirmacion):
         try:
-            # Registrar el estudiante
-            self.estudiante_controller.registrar_estudiante(nombre, apellido, correo, telefono)
+            # Registrar el profesor
+            self.docente_controller.registrar_docente(nombre, apellido, correo, telefono, especialidad)
             
             # Cerrar la ventana de confirmación
             ventana_confirmacion.destroy()
@@ -167,14 +169,14 @@ class RegistrarEstudiante:
             # Cerrar la ventana actual
             self.ventana.destroy()
             
-            # Abrir la ventana de listar estudiantes
+            # Abrir la ventana de listar profesores
             ventana_listar = {
                 "ventana": self.ventana_principal,
                 "tema": self.tema,
                 "db": self.db
             }
-            listar_estudiantes = ListarEstudiantes(ventana_listar)
-            listar_estudiantes.ventana.mainloop()
+            listar_docentes = ListarDocentes(ventana_listar)
+            listar_docentes.ventana.mainloop()
             
         except Exception as e:
             # Mostrar mensaje de error
@@ -192,4 +194,4 @@ class RegistrarEstudiante:
     
     def cerrar_ventana(self):
         self.ventana.destroy()
-        self.ventana_principal.deiconify()
+        self.ventana_principal.deiconify() 

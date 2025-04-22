@@ -1,21 +1,21 @@
 import customtkinter as ctk
-from controllers.estudiante_controller import EstudianteController
+from controllers.docenteController import DocenteController
 
-class BuscarEstudiante:
-    def __init__(self, ventana_estudiante):
-        self.ventana_principal = ventana_estudiante["ventana"]
-        self.tema = ventana_estudiante["tema"]
-        self.db = ventana_estudiante["db"]
-        self.estudiante_controller = EstudianteController(self.db)
-        self.estudiante_encontrado = None
+class BuscarDocente:
+    def __init__(self, ventana_docente):
+        self.ventana_principal = ventana_docente["ventana"]
+        self.tema = ventana_docente["tema"]
+        self.db = ventana_docente["db"]
+        self.docente_controller = DocenteController(self.db)
+        self.docente_encontrado = None
         
         self.ventana = ctk.CTk()
-        self.ventana.title("Buscar Estudiante")
+        self.ventana.title("Buscar Profesor")
         
         # Configurar el tamaño de la ventana
         ancho_pantalla = self.ventana.winfo_screenwidth()
         alto_pantalla = self.ventana.winfo_screenheight()
-        ancho_ventana = int(ancho_pantalla * 0.5)
+        ancho_ventana = int(ancho_pantalla * 0.6)  # Un poco más ancho para incluir especialidad
         alto_ventana = int(alto_pantalla * 0.6)
         
         # Centrar la ventana
@@ -33,7 +33,7 @@ class BuscarEstudiante:
         self.frame_superior.pack(pady=10, fill="x")
         
         # Crear el título
-        self.titulo = ctk.CTkLabel(self.frame_superior, text="Buscar Estudiante", font=("Arial", 16))
+        self.titulo = ctk.CTkLabel(self.frame_superior, text="Buscar Profesor", font=("Arial", 16))
         self.titulo.pack(pady=10, side="left", padx=20)
         
         # Botón para regresar al lado del título
@@ -142,7 +142,7 @@ class BuscarEstudiante:
 
     def crear_tabla(self):
         # Crear encabezados
-        encabezados = ["ID", "Nombre", "Apellido", "Correo", "Teléfono", "Seleccionar"]
+        encabezados = ["ID", "Nombre", "Apellido", "Correo", "Teléfono", "Especialidad", "Seleccionar"]
         for i, encabezado in enumerate(encabezados):
             label = ctk.CTkLabel(
                 self.frame_tabla,
@@ -168,28 +168,28 @@ class BuscarEstudiante:
             # Realizar la búsqueda según el tipo seleccionado
             if self.tipo_busqueda.get() == "id":
                 try:
-                    id_estudiante = int(termino)
-                    estudiante = self.estudiante_controller.obtener_estudiante_por_id(id_estudiante)
-                    if estudiante:
-                        self.mostrar_estudiante(estudiante)
+                    id_docente = int(termino)
+                    docente = self.docente_controller.obtener_docente_por_id(id_docente)
+                    if docente:
+                        self.mostrar_docente(docente)
                     else:
-                        raise ValueError(f"No se encontró estudiante con ID {id_estudiante}")
+                        raise ValueError(f"No se encontró profesor con ID {id_docente}")
                 except ValueError:
                     raise ValueError("El ID debe ser un número entero")
             else:
                 # Buscar por nombre
-                estudiantes = self.estudiante_controller.listar_estudiantes()
+                docentes = self.docente_controller.listar_docentes()
                 resultados = [
-                    e for e in estudiantes 
-                    if termino.lower() in e.nombre.lower() or 
-                       termino.lower() in e.apellido.lower()
+                    d for d in docentes 
+                    if termino.lower() in d.nombre.lower() or 
+                       termino.lower() in d.apellido.lower()
                 ]
                 
                 if not resultados:
-                    raise ValueError(f"No se encontraron estudiantes con el término '{termino}'")
+                    raise ValueError(f"No se encontraron profesores con el término '{termino}'")
                 
-                for i, estudiante in enumerate(resultados, start=1):
-                    self.mostrar_estudiante(estudiante, i)
+                for i, docente in enumerate(resultados, start=1):
+                    self.mostrar_docente(docente, i)
                     
         except Exception as e:
             # Mostrar mensaje de error
@@ -199,52 +199,59 @@ class BuscarEstudiante:
                 text_color="red"
             ).pack(pady=5)
     
-    def mostrar_estudiante(self, estudiante, fila=1):
+    def mostrar_docente(self, docente, fila=1):
         # ID
         ctk.CTkLabel(
             self.frame_tabla,
-            text=str(estudiante.id_estudiante),
+            text=str(docente.id_profesor),
             width=150
         ).grid(row=fila, column=0, padx=5, pady=5)
         
         # Nombre
         ctk.CTkLabel(
             self.frame_tabla,
-            text=estudiante.nombre,
+            text=docente.nombre,
             width=150
         ).grid(row=fila, column=1, padx=5, pady=5)
         
         # Apellido
         ctk.CTkLabel(
             self.frame_tabla,
-            text=estudiante.apellido,
+            text=docente.apellido,
             width=150
         ).grid(row=fila, column=2, padx=5, pady=5)
         
         # Correo
         ctk.CTkLabel(
             self.frame_tabla,
-            text=estudiante.correo,
+            text=docente.correo_electronico,
             width=150
         ).grid(row=fila, column=3, padx=5, pady=5)
         
         # Teléfono
         ctk.CTkLabel(
             self.frame_tabla,
-            text=estudiante.telefono,
+            text=docente.telefono,
             width=150
         ).grid(row=fila, column=4, padx=5, pady=5)
+        
+        # Especialidad
+        ctk.CTkLabel(
+            self.frame_tabla,
+            text=docente.especialidad,
+            width=150
+        ).grid(row=fila, column=5, padx=5, pady=5)
         
         # Botón de selección
         ctk.CTkButton(
             self.frame_tabla,
             text="Seleccionar",
-            command=lambda id=estudiante.id_estudiante: self.seleccionar_estudiante(id),
+            command=lambda id=docente.id_profesor: self.seleccionar_docente(id),
             width=150
-        ).grid(row=fila, column=5, padx=5, pady=5)
+        ).grid(row=fila, column=6, padx=5, pady=5)
     
-    def seleccionar_estudiante(self, id_estudiante):
-        self.estudiante_encontrado = id_estudiante
+    def seleccionar_docente(self, id_docente):
+        self.docente_encontrado = id_docente
         self.cerrar_ventana()
     
     def cambiar_tema(self):
@@ -255,4 +262,4 @@ class BuscarEstudiante:
     
     def cerrar_ventana(self):
         self.ventana.destroy()
-        self.ventana_principal.deiconify()
+        self.ventana_principal.deiconify() 

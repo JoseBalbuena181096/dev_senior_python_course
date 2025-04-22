@@ -2,6 +2,8 @@ import customtkinter as ctk
 from view.Tkinter.ViewEstudiante.listarEstudiantes import ListarEstudiantes
 from view.Tkinter.ViewEstudiante.registrarEstudiante import RegistrarEstudiante
 from view.Tkinter.ViewEstudiante.buscarEstudiante import BuscarEstudiante
+from view.Tkinter.ViewEstudiante.actualizarEstudiante import ActualizarEstudiante
+from view.Tkinter.ViewEstudiante.eliminarEstudiante import EliminarEstudiante
 
 
 class MenuEstudiante:
@@ -98,8 +100,24 @@ class MenuEstudiante:
         self.ventana_buscar_estudiante.ventana.mainloop()
 
     def actualizar_estudiante(self):
-        pass
-
+        # Crear una ventana para buscar el estudiante a actualizar
+        ventana_buscar = {
+            "ventana": self.ventana,
+            "tema": self.tema,
+            "db": self.db
+        }
+        self.ventana_buscar = ActualizarEstudiante(ventana_buscar)
+        self.ventana_buscar.ventana.mainloop()
+        
+        
+        
     def eliminar_estudiante(self):
-        pass
+        # Crear una ventana para eliminar un estudiante
+        ventana_eliminar_estudiante = {
+            "ventana": self.ventana,
+            "tema": self.tema,
+            "db": self.db
+        }
+        self.ventana_eliminar_estudiante = EliminarEstudiante(ventana_eliminar_estudiante)
+        self.ventana_eliminar_estudiante.ventana.mainloop()
 

@@ -1,5 +1,8 @@
 import customtkinter as ctk
 from view.Tkinter.ViewEstudiante.menuEstudiante import MenuEstudiante
+from view.Tkinter.ViewDocente.menuDocente import MenuDocente
+from view.Tkinter.ViewHorario.menuHorario import MenuHorario
+from view.Tkinter.ViewMatricula.menuMatricula import MenuMatricula
 
 # Crear clase de la ventana principal la cual se encarga de redireccionar 
 # al usuario a la ventana que el usuario seleccione
@@ -34,9 +37,8 @@ class MenuPrincipal:
         botones = [
             ("Estudiantes", self.abrir_menu_estudiantes),   
             ("Profesores", self.abrir_menu_profesores),
-            ("Cursos", self.abrir_menu_cursos),
             ("Horarios", self.abrir_menu_horarios),
-            ("Matriculas", self.abrir_menu_matriculas)
+            ("Matrículas", self.abrir_menu_matriculas)
         ]
         
         for i, (texto, comando) in enumerate(botones):
@@ -63,16 +65,37 @@ class MenuPrincipal:
         self.ventana_estudiantes.ventana.mainloop()
 
     def abrir_menu_profesores(self):
-        pass
-
-    def abrir_menu_cursos(self):
-        pass
+        # Envia a la ventana de profesores el tamaño de la ventana principal y el tema de la ventana principal como un dict
+        ventana_docente = {
+            "ventana": self.ventana,
+            "tema": ctk.get_appearance_mode(),
+            "db": self.db
+        }   
+        self.ventana.withdraw()  # Ocultar la ventana principal
+        self.ventana_docentes = MenuDocente(self.db, ventana_docente)
+        self.ventana_docentes.ventana.mainloop()
 
     def abrir_menu_horarios(self):
-        pass
+        # Envia a la ventana de horarios el tamaño de la ventana principal y el tema de la ventana principal como un dict
+        ventana_horario = {
+            "ventana": self.ventana,
+            "tema": ctk.get_appearance_mode(),
+            "db": self.db
+        }   
+        self.ventana.withdraw()  # Ocultar la ventana principal
+        self.ventana_horarios = MenuHorario(self.db, ventana_horario)
+        self.ventana_horarios.ventana.mainloop()
 
     def abrir_menu_matriculas(self):
-        pass
+        # Envia a la ventana de matrículas el tamaño de la ventana principal y el tema de la ventana principal como un dict
+        ventana_matricula = {
+            "ventana": self.ventana,
+            "tema": ctk.get_appearance_mode(),
+            "db": self.db
+        }   
+        self.ventana.withdraw()  # Ocultar la ventana principal
+        self.ventana_matriculas = MenuMatricula(self.db, ventana_matricula)
+        self.ventana_matriculas.ventana.mainloop()
 
     def cerrar_ventana_estudiantes(self):
         self.ventana_estudiantes.ventana.destroy()

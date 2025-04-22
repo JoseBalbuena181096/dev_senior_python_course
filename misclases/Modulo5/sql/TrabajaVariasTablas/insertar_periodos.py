@@ -37,6 +37,7 @@ def crear_schema_periodos():
         # Crear tabla periodo1
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS periodos.periodo1 (
+            periodo1_ID INT AUTO_INCREMENT PRIMARY KEY,
             Fecha DATE,
             ID_Empleado INT,
             Local VARCHAR(1),
@@ -47,6 +48,7 @@ def crear_schema_periodos():
         # Crear tabla periodo2
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS periodos.periodo2 (
+            periodo2_ID INT AUTO_INCREMENT PRIMARY KEY,
             Fecha DATE,
             ID_Empleado INT,
             Local VARCHAR(1),
