@@ -20,7 +20,7 @@ class BuscarMatricula:
         ancho_pantalla = self.ventana.winfo_screenwidth()
         alto_pantalla = self.ventana.winfo_screenheight()
         ancho_ventana = int(ancho_pantalla * 0.7)
-        alto_ventana = int(alto_pantalla * 0.6)
+        alto_ventana = int(alto_pantalla * 0.9)
         
         # Centrar la ventana
         self.ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{int((ancho_pantalla - ancho_ventana) / 2)}+{int((alto_pantalla - alto_ventana) / 2)}")

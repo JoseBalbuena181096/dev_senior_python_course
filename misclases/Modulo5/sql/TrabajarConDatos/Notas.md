@@ -231,3 +231,49 @@ Eliminar varios ingredientes:
 DELETE FROM ingredientes
 WHERE ingrediente_id BETWEEN 15 AND 17;
 ```
+
+### Ejercicios
+Nota: 
+**INSERT INTO** es la instruccion para insertar datos en una tabla, permite añadir valores a una tabla.
+
+**VALUES** se usa para especificar los valores que se van a insertar.
+
+
+Inserta 2 nuevos productos en la tabla producto.
+1. Inserta 2 productos nuevos, puedes llamarlos producto1 y producto2.
+
+```
+INSERT INTO productos(clave_producto, Producto) 
+values 
+('p1', 'producto1'),
+('p2','producto2');
+```
+
+2. Actualizar filas
+
+Nota: Se necesita UPDATE Y SET para lograr actualizar los registros, hay que especificar cuál registro se va a actualizar, esto se puede hacer con WHERE.
+
+2.1 Producto1 sera "Casa"
+
+```
+UPDATE productos
+SET Producto='Casa'
+WHERE Producto='producto1';
+```
+2.2 Producto2 sera "Departamento"
+```
+UPDATE productos
+SET Producto = 'Departamento'
+WHERE Producto='producto2';
+```
+
+
+3. Borrar filas
+
+Nota: Se necesita DELETE para lograr eliminar registros, hay que especificar cuál registro se va a eliminar, esto se puede hacer con WHERE. Se debe tener cuidado al eliminar registros, ya que se pierden los datos.
+
+3.1 Eliminar los productos que añadimos
+```
+DELETE FROM productos
+WHERE Producto IN ('Casa', 'Departamento');
+```
