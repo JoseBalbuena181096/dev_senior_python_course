@@ -209,10 +209,113 @@ Tienes que entregar un informe por cliente donde  entregas la siguiente informac
 
 1. ¿Cual cliente realizo la compra maxima ene el año 2018?
 ```sql
-SELECT 
-	cliente,
-	MAX(venta) AS maxima_compra
+SELECT
+    c.nombre,
+    MAX(v.venta) AS maxima_compra
+FROM ventas v
+JOIN clientes c ON v.ID_Cliente = c.ID_cliente
+WHERE v.fecha_venta BETWEEN '2018-01-01' AND '2018-12-31'
+GROUP BY c.nombre;
+```
+
+2. Cual fue el pago menor que recibimos en 2018
+
+```sql
+SELECT
+	ID_pago,
+    MIN(p.pago) AS minima_compra
+FROM pagos p
+WHERE p.fecha_pago BETWEEN '2018-01-01' AND '2018-12-31'
+GROUP BY p.ID_pago;
+```
+
+3. Cuantas ventas hubo en el 2ndo semestre 2018
+```sql
+SELECT
+	COUNT(*) AS ventas_2do_semestre
 FROM ventas
-WHERE YEAR(fecha) = 2018
-GROUP BY cliente;
+WHERE YEAR(fecha_venta) = 2018
+AND MONTH(fecha_venta) BETWEEN 7 AND 12;
+```
+```sql
+SELECT 
+	COUNT(*) AS CONTEO
+FROM ventas
+WHERE fecha_venta BETWEEN '2018-07-01' AND '2018-12-31';
+```
+
+### Ejercicios con GROUP BY
+Importante:
+El uso de GROUP BY te permite agrupar algún nivel de agrgación en base a otra columna.
+
+Genera una vista para entregar el informa.
+
+1. Las ventas por vendedor:
+```sql
+SELECT 
+    ve.nombre,
+    SUM(v.venta) AS total_ventas
+FROM ventas v
+JOIN `db_practica1`.`vendedores` ve ON v.id_vendedor =  ve.ID_Vendedor
+GROUP BY ve.nombre;
+```
+
+2. Ventas por producto:
+```sql
+SELECT
+	p.producto,
+    SUM(v.venta) AS total_ventas
+FROM ventas v
+JOIN productos p ON v.id_producto = p.id_producto
+GROUP BY p.producto;
+```
+
+3. Resumen de compras por cliente en 2017:
+```sql
+SELECT
+	c.nombre,
+    SUM(v.venta) AS total_ventas
+FROM ventas v
+JOIN clientes c ON v.id_cliente = c.id_cliente
+WHERE YEAR(v.fecha_venta) = 2017
+GROUP BY c.nombre;
+```
+
+### Ejercicios con HAVING
+Con HAVING  logramos tener otro filtro que aplica a funciones de agrecación en donde where NO PUEDE SER USADO
+Recuerda el orden
+1. SELECT
+2. FROM
+3. WHERE
+4. GROUP BY
+5. HAVING
+
+
+Resumen de compras por cliente en 2017 que hayan sido mayores a 120000000:
+
+```sql
+SELECT 
+	c.nombre,
+    SUM(v.venta) AS total_ventas
+FROM ventas v
+JOIN clientes c ON v.id_cliente = c.id_cliente
+WHERE  YEAR(v.fecha_venta) = 2017
+GROUP BY c.nombre
+HAVING total_ventas > 120000000; 
+```
+
+### Extra
+Generando datos importantes
+Importante:
+-	El uso conjunto de JOINs, UNIOs Y GROUPs y funciones nos darán ese dato que queremos lograr.
+- Ventaja de usar SQL es que puedes procesar millones de registros y hacer cálculos con información necesaria.
+
+1. Dame la lista de los clientes morosos:
+
+```sql
+SELECT v.id, v.ID_cliente, v.venta, SUM(p.monto) AS pago, v.venta - SUM(p.monto) AS saldo
+FROM pagos p
+JOIN ventas v
+ON p.ID_venta = v.id
+GROUP BY p.ID_venta;
 ```

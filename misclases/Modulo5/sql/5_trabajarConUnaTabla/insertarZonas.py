@@ -18,36 +18,46 @@ def insertar_datos():
 
         # Crear tabla si no existe
         crear_tabla = """
-        CREATE TABLE IF NOT EXISTS productos (
-            ID_Producto INT PRIMARY KEY,
-            Producto VARCHAR(50)
+        CREATE TABLE IF NOT EXISTS zonas (
+            ID_zona INT PRIMARY KEY,
+            Zona VARCHAR(20)
         )
         """
         cursor.execute(crear_tabla)
 
-        # Ruta del archivo CSV
-        ruta_csv = os.path.join(os.path.dirname(__file__), 'trabajarConUnaTabla', 'producto.csv')
+        # Obtener la ruta del directorio actual del script
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # Ruta del archivo CSV (en el mismo directorio que el script)
+        ruta_csv = os.path.join(script_dir, 'zona.csv')
+
+        # Verificar si el archivo existe
+        if not os.path.isfile(ruta_csv):
+            print(f"Error: No se encontró el archivo {ruta_csv}")
+            print(f"Directorio actual: {script_dir}")
+            print(f"Contenido del directorio: {os.listdir(script_dir)}")
+            return
 
         # Leer y insertar datos del CSV
-        with open(ruta_csv, 'r') as archivo:
+        with open(ruta_csv, 'r', encoding='utf-8') as archivo:
             lector_csv = csv.reader(archivo)
             next(lector_csv)  # Saltar la cabecera
             
             for fila in lector_csv:
-                id_producto = int(fila[0])
-                producto = fila[1]
+                id_zona = int(fila[0])
+                zona = fila[1]
 
                 # Consulta de inserción
                 insertar = """
-                INSERT INTO productos (ID_Producto, Producto)
+                INSERT INTO zonas (ID_zona, Zona)
                 VALUES (%s, %s)
                 """
-                valores = (id_producto, producto)
+                valores = (id_zona, zona)
                 cursor.execute(insertar, valores)
 
         # Confirmar los cambios
         conexion.commit()
-        print("Datos de productos insertados correctamente")
+        print("Datos de zonas insertados correctamente")
 
     except mysql.connector.Error as error:
         print(f"Error al insertar datos: {error}")

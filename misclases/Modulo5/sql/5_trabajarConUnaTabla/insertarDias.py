@@ -18,36 +18,46 @@ def insertar_datos():
 
         # Crear tabla si no existe
         crear_tabla = """
-        CREATE TABLE IF NOT EXISTS zonas (
-            ID_zona INT PRIMARY KEY,
-            Zona VARCHAR(20)
+        CREATE TABLE IF NOT EXISTS dias (
+            ID_Dia INT PRIMARY KEY,
+            Dia_semana VARCHAR(20)
         )
         """
         cursor.execute(crear_tabla)
 
-        # Ruta del archivo CSV
-        ruta_csv = os.path.join(os.path.dirname(__file__), 'trabajarConUnaTabla', 'zona.csv')
+        # Obtener la ruta del directorio actual del script
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # Ruta del archivo CSV (en el mismo directorio que el script)
+        ruta_csv = os.path.join(script_dir, 'dias.csv')
+
+        # Verificar si el archivo existe
+        if not os.path.isfile(ruta_csv):
+            print(f"Error: No se encontró el archivo {ruta_csv}")
+            print(f"Directorio actual: {script_dir}")
+            print(f"Contenido del directorio: {os.listdir(script_dir)}")
+            return
 
         # Leer y insertar datos del CSV
-        with open(ruta_csv, 'r') as archivo:
+        with open(ruta_csv, 'r', encoding='utf-8') as archivo:
             lector_csv = csv.reader(archivo)
             next(lector_csv)  # Saltar la cabecera
             
             for fila in lector_csv:
-                id_zona = int(fila[0])
-                zona = fila[1]
+                id_dia = int(fila[0])
+                dia_semana = fila[1]
 
                 # Consulta de inserción
                 insertar = """
-                INSERT INTO zonas (ID_zona, Zona)
+                INSERT INTO dias (ID_Dia, Dia_semana)
                 VALUES (%s, %s)
                 """
-                valores = (id_zona, zona)
+                valores = (id_dia, dia_semana)
                 cursor.execute(insertar, valores)
 
         # Confirmar los cambios
         conexion.commit()
-        print("Datos de zonas insertados correctamente")
+        print("Datos de días insertados correctamente")
 
     except mysql.connector.Error as error:
         print(f"Error al insertar datos: {error}")
