@@ -79,7 +79,19 @@ Web Modernas:
 - [Codigo 369](https://www.youtube.com/@Codigo369) - Webs Modernas
 - [Gentleman Programming](https://www.youtube.com/@gentlemanprogramming) - Javascript 
 
+
 FastAPI:
 - [FAZT](https://www.youtube.com/watch?v=6eVj33l5e9M) FastAPI & SQLAlchemy RESTAPI CRUD
 - [PabloDev](https://www.youtube.com/playlist?list=PLHftsZss8mw7pSRpCyd-TM4Mu43XdyB3R) - Curso de Introducción a #FastAPI 2024 
 - [Ingeniero John Ortiz Ordoñez](https://www.youtube.com/playlist?list=PL2PZw96yQChzll2RHgViiQ8eUvIQycAVl)(fast api curso ) Destacado
+
+# Curso de Laravel y desarollo de inventarios
+
+- [APX](https://apx.school/students/journeys/sd/mod-0/f3961aa3-01e1-41bf-b87d-2bd5db46740e/0c1eca591a3c) - Fullstack Developer
+
+- [Jose Jaico](https://www.udemy.com/course/crea-tu-sistema-de-inventario-con-laravel-11-vue-3-y-aws/?couponCode=CP130525) - Crea tu SISTEMA DE INVENTARIO con LARAVEL 11 + VUE 3 y AWS
+- [Héctor de León](https://www.udemy.com/course/curso-de-programacion-backend-en-php-laravel/?couponCode=CP130525)(Curso de Programación Backend en PHP Laravel)
+- [Juan Pablo De la torre Valdez](https://www.udemy.com/course/curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc/?couponCode=CP130525)-Laravel 9 - Crea Aplicaciones y Sitios Web con PHP 8 y MVC
+
+- [Héctor de León](https://www.udemy.com/course/estructuras-de-datos-en-javascript/?couponCode=CP130525)- Estructuras de Datos en JavaScript
+- [Héctor de León](https://www.udemy.com/course/el-mejor-curso-de-sql/?couponCode=CP130525) - Curso de Programación en SQL 
