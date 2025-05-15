@@ -298,3 +298,255 @@ Es CORRELACIONADA porque la subconsulta usa información de la consulta principa
 Se ejecuta para CADA FILA de la tabla ventas
 Compara cada venta contra el promedio de SU PROPIA tienda, no contra un promedio general
 Nos ayuda a identificar las ventas "superiores al promedio" en cada tienda individual
+
+##  Operador EXISTS
+Se utiliza para comprobar la existencia de registros en una subconsulta.
+
+Devuelve verdadero si la subconsulta devuelve uno o más redistros.
+
+- Se utiliza para comprobar la existencia de cualquier registro en una subconsulta.
+Devuelve VERDADER si la subconsulta devuelve uno o más registros.
+
+Explicame las siguientes consultas:
+
+```sql
+SELECT *
+FROM empleados
+WHERE ID_empleado IN(
+	SELECT distinct venta_empleado
+    FROM ventas
+);
+
+SELECT *
+FROM empleados e 
+WHERE EXISTS(
+	SELECT venta_empleado
+	FROM ventas
+    WHERE venta_empleado = e.ID_empleado
+);
+
+SELECT *
+FROM empleados e 
+WHERE NOT EXISTS(
+	SELECT venta_empleado
+	FROM ventas
+    WHERE venta_empleado = e.ID_empleado
+);
+
+```
+
+Explicación de las Consultas SQL
+Consulta 1:
+
+```sql
+SELECT *
+FROM empleados
+WHERE ID_empleado IN(
+    SELECT distinct venta_empleado
+    FROM ventas
+);
+```
+
+Explicación: Esta consulta selecciona todos los empleados que han realizado al menos una venta.
+
+La consulta principal selecciona todos los datos de la tabla empleados.
+La subconsulta SELECT distinct venta_empleado FROM ventas obtiene una lista única de IDs de empleados que aparecen en la tabla ventas.
+El operador IN filtra los empleados cuyo ID está en la lista resultante de la subconsulta.
+Resultado: Muestra todos los datos de los empleados que han registrado al menos una venta.
+Consulta 2:
+
+```sql
+SELECT *
+FROM empleados e 
+WHERE EXISTS(
+    SELECT venta_empleado
+    FROM ventas
+    WHERE venta_empleado = e.ID_empleado
+);
+```
+
+Explicación: Esta consulta también selecciona todos los empleados que han realizado al menos una venta, pero usando el operador EXISTS.
+
+La tabla empleados se le asigna el alias e.
+El operador EXISTS devuelve TRUE si la subconsulta retorna al menos un registro.
+La subconsulta busca en la tabla ventas registros donde venta_empleado coincida con el ID del empleado actual (e.ID_empleado).
+Resultado: Funcionalmente equivalente a la primera consulta, pero utiliza una técnica diferente (correlación entre tablas).
+Consulta 3:
+
+```sql
+SELECT *
+FROM empleados e 
+WHERE NOT EXISTS(
+    SELECT venta_empleado
+    FROM ventas
+    WHERE venta_empleado = e.ID_empleado
+);
+```
+
+Explicación: Esta consulta hace lo contrario a las anteriores: selecciona todos los empleados que NO han realizado ninguna venta.
+
+El operador NOT EXISTS devuelve TRUE cuando la subconsulta no retorna ningún registro.
+La subconsulta busca en la tabla ventas registros donde venta_empleado coincida con el ID del empleado actual.
+Si no encuentra ninguna coincidencia (el empleado no ha realizado ventas), la condición NOT EXISTS se cumple.
+Resultado: Muestra todos los datos de los empleados que no han registrado ninguna venta.
+Las consultas 1 y 2 son funcionalmente equivalentes pero utilizan diferentes técnicas SQL. La consulta 3 es el complemento lógico de las dos primeras.
+
+- ¿Como se comparan estas ventas con respecto al promedio?
+
+```sql
+SELECT 
+	id_venta, 
+    venta,
+    (SELECT AVG(venta) FROM ventas) AS promedio_venta,
+    venta - (SELECT promedio_venta)
+FROM ventas;
+```
+
+
+Esta consulta está diseñada para comparar cada venta individual con el promedio de todas las ventas. Vamos a analizarla por partes:
+
+id_venta, venta: Selecciona el ID y el monto de cada venta.
+(SELECT AVG(venta) FROM ventas) AS promedio_venta: Es una subconsulta escalar que calcula el promedio de todas las ventas en la tabla y lo muestra como una columna llamada "promedio_venta". Esta subconsulta se ejecuta una sola vez para toda la consulta principal.
+venta - (SELECT AVG(venta) FROM ventas): Calcula la diferencia entre cada venta individual y el promedio general. Esto muestra cuánto está por encima o por debajo cada venta respecto al promedio.
+Si el resultado es positivo, la venta está por encima del promedio
+Si el resultado es negativo, la venta está por debajo del promedio
+Si el resultado es cero, la venta es exactamente igual al promedio
+FROM ventas: Indica que estamos obteniendo los datos de la tabla "ventas".
+Nota importante: Hay un error en la consulta original. La última columna debería ser:
+
+```sql
+venta - (SELECT AVG(venta) FROM ventas) AS diferencia_del_promedio
+En lugar de:
+```
+```sql
+venta - (SELECT promedio_venta)
+```
+La segunda forma no funcionaría correctamente porque intenta hacer referencia al alias "promedio_venta" dentro de una subconsulta, lo cual no es válido en la mayoría de los sistemas SQL.
+
+Esta consulta es útil para identificar rápidamente qué ventas están por encima o por debajo del promedio, lo que puede ayudar a identificar tendencias o valores atípicos en los datos de ventas.
+
+Las subqueries se pueden usar en cualquier lugar, en el WHERE, en el SELECT, en el FROM, etc.
+
+![alt text](image-2.png)
+
+```sql
+SELECT * 
+FROM (
+	SELECT 
+	id_venta, 
+    venta,
+    (SELECT AVG(venta) FROM ventas) AS promedio_venta,
+    venta - (SELECT promedio_venta) AS delta
+FROM ventas
+) AS PROMEDIO
+WHERE delta > 100;
+```
+
+Esta consulta utiliza una subconsulta en la cláusula FROM (también conocida como "tabla derivada" o "subconsulta en línea") para encontrar ventas que superan significativamente el promedio. Vamos a analizarla paso a paso:
+
+Subconsulta interna:
+
+```sql
+SELECT 
+    id_venta, 
+    venta,
+    (SELECT AVG(venta) FROM ventas) AS promedio_venta,
+    venta - (SELECT AVG(venta) FROM ventas) AS delta
+FROM ventas;
+```
+
+Esta parte:
+
+Selecciona el ID y el monto de cada venta
+Calcula el promedio de todas las ventas y lo muestra como columna "promedio_venta"
+Calcula la diferencia entre cada venta individual y el promedio, llamándola "delta"
+Esta subconsulta genera una tabla temporal con estas cuatro columnas para cada venta
+Consulta externa:
+
+```sql
+SELECT * 
+FROM (...) AS PROMEDIO
+WHERE delta > 100;
+```
+
+Esta parte:
+
+Toma la tabla temporal generada por la subconsulta y le asigna el alias "PROMEDIO"
+Filtra solo las filas donde la columna "delta" es mayor que 100
+Selecciona todas las columnas (*) de esas filas filtradas
+Resultado final:
+La consulta completa devuelve todas las ventas cuyo monto supera al promedio general por más de 100 unidades monetarias. Esto permite identificar fácilmente las ventas significativamente superiores al promedio.
+
+Observación importante:
+Al igual que en la consulta anterior, hay un error en la referencia a (SELECT promedio_venta). La forma correcta sería:
+
+```sql
+venta - (SELECT AVG(venta) FROM ventas) AS delta
+```
+
+Esta consulta es un buen ejemplo de cómo las subconsultas pueden usarse en la cláusula FROM para crear tablas derivadas temporales que luego pueden filtrarse o manipularse en la consulta externa.
+
+## Ejercicios
+
+Operador IN
+
+Las Subqueries se pueden añadir en diferentes lugares de la consulta, es importante entender bien que tus base de datos y usar las columnas de identificadores.
+
+Crear una subquery para generar:
+
+1 Los vendedores que no vendieron en 2018:
+
+```sql
+SELECT *
+FROM empleados
+WHERE ID_empleado NOT IN(
+	SELECT venta_empleado
+    FROM ventas
+    WHERE YEAR(fecha) = 2018
+);
+```
+
+2. Productos que no se vendieron en marzo del 2017:
+
+```sql
+SELECT *
+FROM productos
+WHERE producto_id NOT IN(
+	SELECT clave_producto
+    FROM ventas
+    WHERE MONTH(fecha) = 3 AND YEAR(fecha) = 2017
+);
+```
+
+3. Clientes que compraron propiedades de remates Bancarios en el primer cuarto de 2016:
+
+```sql
+SELECT *
+FROM clientes
+WHERE id_cliente IN(
+	SELECT id_cliente
+    FROM ventas v
+    JOIN productos p USING(id_producto)
+    WHERE p.id_producto = 7
+    AND MONTH(v.fecha_venta) BETWEEN 1 AND 3 
+    AND YEAR(v.fecha_venta) = 2016
+) 
+ORDER BY id_cliente ASC;
+```
+
+o 
+
+```sql
+SELECT *
+FROM clientes
+WHERE id_cliente IN(
+	SELECT id_cliente
+    FROM ventas v
+    JOIN productos p USING(id_producto)
+    WHERE p.producto = "Remates"
+    AND MONTH(v.fecha_venta) BETWEEN 1 AND 3 
+    AND YEAR(v.fecha_venta) = 2016
+) 
+ORDER BY id_cliente ASC;
+```
+
