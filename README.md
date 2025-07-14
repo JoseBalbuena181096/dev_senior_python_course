@@ -239,6 +239,8 @@ FastAPI:
 
 [Aprende FastAPI desde cero](https://www.udemy.com/course/aprende-fastapi-desde-cero/?couponCode=KEEPLEARNING)
 
+[Django](https://www.udemy.com/course/django-vue-bootstrap/learn/lecture/43580402?start=45#overview)
+
 [Curso n8n: Crea Agentes de IA sin Código con Make y Zapier](https://www.udemy.com/course/n8n-crea-agentes-de-ia-sin-programar-make-zapier-rel-ia/?couponCode=KEEPLEARNING)
 [Agentes de voz con IA: Crea recepcionistas virtuales desde 0](https://www.udemy.com/course/ia-para-recepcionistas-de-voz-curso-desde-0/?couponCode=KEEPLEARNING)
 
