@@ -1,11 +1,10 @@
-
 # 🚀 Welcome to the **Python 🐍 from Zero to Senior** Repository!
+
 ## Dev Senior Code - Python 🐍 course - Module 1
 
 Hello, Python enthusiast! 👋 Welcome to the official repository for the **Python from Zero to Senior: The Master Route of Code** course. This repository is a valuable resource that will guide you from beginner to expert in Python programming module 1.
 
 Whether you're just starting or looking to deepen your skills, you'll find carefully structured lessons, examples, and practical exercises to support your journey.
-
 
 **The purpose of this repository is to keep the track of the classes for the python course Module 1.**
 
@@ -18,17 +17,17 @@ Here is a breakdown of the course modules and topics in Spanish:
 **Fundamentos de programación en Python 🐍 :**
 
 - **📘 Clase 1**: Introducción a python y configuracion del entorno de desarrollo
-    - Instalación de Python, IDEs ( PyCharm, VSCode) y configuración de Git / GitHub.
+  - Instalación de Python, IDEs ( PyCharm, VSCode) y configuración de Git / GitHub.
 - **📘 Clase 2**: Variables, tipos de datos y operadores.
-    - Operadores aritméticos, relacionales y lógicos en Python.
+  - Operadores aritméticos, relacionales y lógicos en Python.
 - **📘 Clase 3**: Estructuras de control de flujo.
-    - Condicionales y bucles básicos (if, else, for, while).
+  - Condicionales y bucles básicos (if, else, for, while).
 - **📘 Clase 4**: Funciones y modularidad.
-    - Declaración y uso de funciones.
+  - Declaración y uso de funciones.
 - **📘 Clase 5**: Introducción a listas, tuplas y diccionarios.
-    - Manipulación de estructuras de datos básicas.
+  - Manipulación de estructuras de datos básicas.
 - **📘 Clase 6**: Conceptos básicos de programación funcional.
-    - Uso de lambda, map, filter y reduce.
+  - Uso de lambda, map, filter y reduce.
 - **📘 Clase 7**: Ejercicio práctico integrador con estructuras de control.
 - **📘 Clase 8**: Repaso y mini -proyecto básico en Python.
 
@@ -51,38 +50,37 @@ Links de canales de youtube recomendados para Senior Code Arquitecture:
 
 Intro desarollo de Software:
 
-- [Lanzillotta](https://www.youtube.com/playlist?list=PLoXkJsw9ae_sg8ti0R-m55D2Ppn1_S9Pl) - 
-Intro. al Desarrollo de Software
--   [Intro al Desarrollo de Software](https://www.youtube.com/watch?v=ZxRu4pjaQi4&list=PLb60aTNU3YEp6SIOz7IPDLHrPxjnbWX8J) - Argentina
-
-
+- [Lanzillotta](https://www.youtube.com/playlist?list=PLoXkJsw9ae_sg8ti0R-m55D2Ppn1_S9Pl) -
+  Intro. al Desarrollo de Software
+- [Intro al Desarrollo de Software](https://www.youtube.com/watch?v=ZxRu4pjaQi4&list=PLb60aTNU3YEp6SIOz7IPDLHrPxjnbWX8J) - Argentina
 
 Python:
+
 - [ArjanCodes](https://www.youtube.com/@ArjanCodes) - Python Software Design & Architecture
 - [Tech With Tim](https://www.youtube.com/@TechWithTim) - Advanced Python Programming
 - [Real Python](https://www.youtube.com/@realpython) - Python Tips & Best Practices
 - [mCoding](https://www.youtube.com/@mCoding) - Advanced Python Concepts
 - [Corey Schafer](https://www.youtube.com/@CoreySchafer) - Python Programming Tutorials
 
-Python Arquitecture:
--[Product Crafter](https://www.youtube.com/@ProductCrafter) - Python Aruqitectura y Patrones de Diseño Destacado
+Python Arquitecture: -[Product Crafter](https://www.youtube.com/@ProductCrafter) - Python Aruqitectura y Patrones de Diseño Destacado
 
 Arquitectura Y Patrones de diseño:
+
 - [Hector de Leon](https://courses.metalcode.io/courses/take/design-pattern-python/lessons/61057917-que-es-el-patron-de-diseno-iterator) - (Curso de Patrones de Diseño en Python) Destacado
-- [design-patterns](https://refactoring.guru/es/design-patterns) - Patrones de diseño 
+- [design-patterns](https://refactoring.guru/es/design-patterns) - Patrones de diseño
 - [DavinchiCoder](https://www.youtube.com/@davinchicoder/playlists) - Arquicto de Software
 - [amin espinoza](https://www.youtube.com/@AminEspinoza/playlists) - Diseño de sistemas
 
-
 Web Modernas:
+
 - [Minudevlive](https://www.youtube.com/watch?v=yB4n_K7dZV8&list=PLUofhDIg_38qm2oPOV-IRTTEKyrVBBaU7) - NODE.JS DESDE CERO
 - [Codigo 369](https://www.youtube.com/@Codigo369) - Webs Modernas
-- [Gentleman Programming](https://www.youtube.com/@gentlemanprogramming) - Javascript 
-
+- [Gentleman Programming](https://www.youtube.com/@gentlemanprogramming) - Javascript
 
 FastAPI:
+
 - [FAZT](https://www.youtube.com/watch?v=6eVj33l5e9M) FastAPI & SQLAlchemy RESTAPI CRUD
-- [PabloDev](https://www.youtube.com/playlist?list=PLHftsZss8mw7pSRpCyd-TM4Mu43XdyB3R) - Curso de Introducción a #FastAPI 2024 
+- [PabloDev](https://www.youtube.com/playlist?list=PLHftsZss8mw7pSRpCyd-TM4Mu43XdyB3R) - Curso de Introducción a #FastAPI 2024
 - [Ingeniero John Ortiz Ordoñez](https://www.youtube.com/playlist?list=PL2PZw96yQChzll2RHgViiQ8eUvIQycAVl)(fast api curso ) Destacado
 
 # Curso de Laravel y desarollo de inventarios
@@ -94,16 +92,14 @@ FastAPI:
 - [Juan Pablo De la torre Valdez](https://www.udemy.com/course/curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc/?couponCode=CP130525)-Laravel 9 - Crea Aplicaciones y Sitios Web con PHP 8 y MVC
 
 - [Héctor de León](https://www.udemy.com/course/estructuras-de-datos-en-javascript/?couponCode=CP130525)- Estructuras de Datos en JavaScript
-- [Héctor de León](https://www.udemy.com/course/el-mejor-curso-de-sql/?couponCode=CP130525) - Curso de Programación en SQL 
-
+- [Héctor de León](https://www.udemy.com/course/el-mejor-curso-de-sql/?couponCode=CP130525) - Curso de Programación en SQL
 
 ## Matematicas
+
 [Aritmetixa desde cero](https://www.udemy.com/course/epsilonpreu_aritmetica/?couponCode=KEEPLEARNING)
 
 [Matematica Pre Univeristaria con Python](https://www.youtube.com/watch?v=i7vOAcUo5iA&list=PLWKjhJtqVAbl5SlE6aBHzUVZ1e6q1Wz0v)
 []
-
-
 
 ## IA aplicada
 
@@ -137,16 +133,13 @@ FastAPI:
 
 [Aprende matemáticas desde cero - Cálculo Diferencial](https://www.udemy.com/course/matematicas-calculo-diferencial/?couponCode=KEEPLEARNING)
 
-
 [Algebra Lineal](https://www.udemy.com/course/curso-maestro-de-algebra-lineal-aprende-desde-cero/?couponCode=KEEPLEARNING)
 
 [Curso completo de álgebra lineal de cero a experto](https://www.udemy.com/course/algebralineal/?kw=algebra+lineal&src=sac)
 
-
 [Curso práctico de Estadística y Probabilidades](https://www.udemy.com/course/curso-practico-de-estadistica-y-probabilidades/)
 
 [Curso completo de Estadística a nivel universitario](https://www.udemy.com/course/curso-completo-de-estadistica-a-nivel-universitario/?couponCode=KEEPLEARNING)
-
 
 [Curso práctico de Estadística Inferencial](https://www.udemy.com/course/curso-practico-de-estadistica-inferencial/?couponCode=KEEPLEARNING)
 
@@ -166,8 +159,8 @@ FastAPI:
 
 [Métodos numéricos con Python: análisis de errores](https://www.udemy.com/course/metodos-numericos-con-python-analisis-de-errores/?couponCode=KEEPLEARNING)
 
-
 ## Software
+
 [Matematicas Discretas](https://www.udemy.com/course/curso-maestro-de-matematica-discreta/?couponCode=KEEPLEARNING)
 [Probalidad](https://www.udemy.com/course/curso-maestro-de-probabilidad-aprende-desde-cero/?couponCode=KEEPLEARNING)
 
@@ -181,7 +174,6 @@ FastAPI:
 
 [Conceptos generales de software y sus aplicaciones](https://www.youtube.com/watch?v=o-PA32mBdhw&list=PLnkH-T7cy6QC5OE8IhIMkDAfx4NYspy_T&index=2)
 [100 dias de Javascript](https://www.udemy.com/course/javascript-data-structures-and-algorithms/?couponCode=KEEPLEARNING)
-
 
 [c++ esp](https://www.udemy.com/course/curso-maestro-de-c-aprende-desde-cero/?couponCode=KEEPLEARNING)
 
@@ -224,7 +216,6 @@ FastAPI:
 
 [Curso completo de Python 3 de la A a la Z - 2022 +50 horas!](https://www.udemy.com/course/python-3-az/)
 
-
 [Especialización completa en Python - Actualizado en 2025](https://www.udemy.com/course/especializacion-completa-en-python/)
 
 [Especialización en Visión Artificial 2025](https://www.udemy.com/course/python-para-vision-artificial/?couponCode=KEEPLEARNING)
@@ -246,11 +237,8 @@ FastAPI:
 
 [Matematicas para IA-juan gomilla](https://www.udemy.com/course/fundamentos-matematicas-para-machine-learning-juan-gabriel-gomila/?couponCode=KEEPLEARNING)
 
-
-
 [Machine Learning-juan gomilla](https://www.udemy.com/course/machinelearning-es/?couponCode=KEEPLEARNING)
-[Machine Learning Aron sanchez] (https://www.udemy.com/course/2master-en-ciencia-de-datos-datascience/?couponCode=KEEPLEARNING) 
-
+[Machine Learning Aron sanchez] (https://www.udemy.com/course/2master-en-ciencia-de-datos-datascience/?couponCode=KEEPLEARNING)
 
 [Machine Learning y Data Science: Curso Completo con Python](https://www.udemy.com/course/machine-learning-desde-cero/)
 
@@ -260,8 +248,7 @@ FastAPI:
 
 [Deep Learning con Python y Keras. Redes Neuronales avanzado](https://www.udemy.com/course/deep-learning-con-keras/)
 
-[redes neuronales  gomilla](https://www.udemy.com/course/deep-learning-a-z/?couponCode=KEEPLEARNING)
-
+[redes neuronales gomilla](https://www.udemy.com/course/deep-learning-a-z/?couponCode=KEEPLEARNING)
 
 [Máster Especialista de Deep Learning en Python con PyTorch](https://www.udemy.com/course/master-especialista-deep-learning-python-pytorch/)
 
@@ -275,7 +262,6 @@ FastAPI:
 
 [Aprende BERT, el algoritmo de NLP más avanzado de Google](https://www.udemy.com/course/bert-nlp/?couponCode=KEEPLEARNING)
 
-
 [Proyectos de IA reales](https://www.udemy.com/course/masterclass-en-inteligencia-artificial-crea-6-proyectos/?couponCode=KEEPLEARNING)
 
 [Data sciencia aplicada a negocios](https://www.udemy.com/course/data-science-para-negocios/?couponCode=KEEPLEARNING)
@@ -284,13 +270,28 @@ FastAPI:
 
 [Aprendizaje por Refuerzo Profundo 2.0 en Python](https://www.udemy.com/course/aprendizaje-por-refuerzo-profundo/?couponCode=KEEPLEARNING)
 
-
 [Inteligencia Artificial Moderna con Cero Código](https://www.udemy.com/course/inteligencia-artificial-moderna-con-cero-codigo/)
 
+---
 
+[Inteligencia Artificial Moderna con Cero Código](https://www.youtube.com/watch?v=WiZpdSKT1BY)
 
-# IA 
+[Desarrollo Web con Inteligencia Artificial OpenAI, DeepSeek y JavaScript](https://www.udemy.com/course/desarrollo-web-con-inte ligencia-artificial-openai-deepseek-javascript/?couponCode=KEEPLEARNING)
+
+[Crea Sistemas ChatCenter en PHP con Asistentes IA y ChatBot](https://www.udemy.com/course/crea-sistemas-chatcenter-en-php-con-asistentes-ia-y-chatbot/?couponCode=KEEPLEARNING)
+
+[Desarrollo IA y Python Megaclase con 300 Proyectos](https://www.udemy.com/course/desarrollo-ia-y-python-megaclase-con-300-proyectos/?couponCode=KEEPLEARNING)
+
+[Certificado de Explorador en Ingeniería de IAhttps://www.udemy.com/course/es-certificado-de-explorador-en-ingenieria-de-ia/?couponCode=KEEPLEARNING]()
+
+[Bootcamp IA Generativa y Aplicaciones LLM](https://www.udemy.com/course/bootcamp-ia-generativa-y-aplicaciones-llm/?couponCode=KEEPLEARNING)
+
+[Bootcamp 2025: Comprender y Crear Agentes IA Profesionales](https://www.udemy.com/course/bootcamp-2025-comprender-y-crear-agentes-ia-profesionales/?couponCode=KEEPLEARNING)
+
+[Langchain y LLM: Desarrolla Aplicaciones de IA en Python](https://www.udemy.com/course/langchain-y-llm-desarrolla-aplicaciones-de-ia-en-python/?couponCode=KEEPLEARNING)
+
+# IA
+
 [iNTELIGENCIA ARTIFICIAL: Planificacion automatica](https://www.udemy.com/course/inteligencia-artificial-planificacion-automatica-desde-cero/?couponCode=KEEPLEARNING)
-
 
 https://learn.maestriasydiplomados.tec.mx/area-data-science-p?utm_campaign=9026363-VEC-Atr-EC-Ext-CampTematicaDataScience&utm_source=ppc&utm_medium=search&utm_term=SmartUpGoogleSearchAdsLandingpageDataScience&utm_content=Programacion%20con%20Python&https://learn.maestriasydiplomados.tec.mx/area-data-science-p?utm_campaign=9026363-VEC-Atr-EC-Ext-CampTematicaDataScience&utm_source=ppc&utm_medium=search&utm_term=SmartUpGoogleSearchAdsLandingpageDataScience&utm_content=Programacion%20con%20Python&utm_term=SmartUpGoogleSearchAdsLandingpageDataScience&utm_campaign=VEC-Atr-EC-Ext-CampTematicaDataScience&utm_source=adwords&utm_medium=ppc&hsa_acc=1048011352&hsa_cam=22392177350&hsa_grp=178106600620&hsa_ad=742970937277&hsa_src=g&hsa_tgt=kwd-314930611638&hsa_kw=curso%20de%20python%20desde%20cero&hsa_mt=b&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=22392177350&gbraid=0AAAAAqGZT9u72_hdWJopl7zv059zzayHM&gclid=Cj0KCQjwss3DBhC3ARIsALdgYxOZTLiAW4lCPlP-p-wQhJcgTx_-GErt3-jt2vUio_FYv2bK1CThE1IaAvXJEALw_wcB#programas
